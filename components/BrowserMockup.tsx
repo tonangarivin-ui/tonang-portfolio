@@ -37,7 +37,11 @@ export const BrowserMockup: React.FC<BrowserMockupProps> = ({ projects }) => {
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
               <path d="M7 11V7a5 5 0 0110 0v4" />
             </svg>
-            <span>https://{activeProject.displayUrl}</span>
+            <span className="browser-address-text">https://{activeProject.displayUrl}</span>
+          </div>
+
+          <div className="browser-chrome-tag" aria-hidden="true">
+            <span>PREVIEW</span>
           </div>
         </div>
 
@@ -57,12 +61,11 @@ export const BrowserMockup: React.FC<BrowserMockupProps> = ({ projects }) => {
                 className={`browser-tab ${isActive ? 'active' : ''}`}
                 onClick={() => setActiveId(project.id)}
               >
-                <span>{project.title}</span>
+                <span className="tab-title">{project.title}</span>
                 <span
-                  className={`status-badge ${
-                    project.status === 'Live' ? 'live' : 'ongoing'
+                  className={`status-indicator ${
+                    project.status === 'Live' ? 'status-live' : 'status-ongoing'
                   }`}
-                  style={{ fontSize: '0.6875rem', padding: '0.15rem 0.45rem' }}
                 >
                   {project.status}
                 </span>
@@ -80,10 +83,10 @@ export const BrowserMockup: React.FC<BrowserMockupProps> = ({ projects }) => {
         aria-labelledby={`tab-${activeProject.id}`}
       >
         <div className="viewport-banner">
-          <div className="preview-badge-group">
-            <span className="preview-pill">UI preview</span>
-            <span style={{ fontSize: '0.8125rem', color: 'var(--color-text-muted)' }}>
-              Simulasi tampilan antarmuka
+          <div className="preview-label-group">
+            <span className="preview-tag">Simulasi UI</span>
+            <span className="preview-note">
+              Bukan embed langsung atau screenshot final
             </span>
           </div>
 
@@ -91,8 +94,7 @@ export const BrowserMockup: React.FC<BrowserMockupProps> = ({ projects }) => {
             href={activeProject.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary"
-            style={{ minHeight: '38px', padding: '0.375rem 0.875rem', fontSize: '0.8125rem' }}
+            className="btn btn-primary viewport-cta"
             aria-label={`Buka project asli ${activeProject.title} di tab baru`}
           >
             <span>Buka project asli</span>
@@ -110,7 +112,7 @@ export const BrowserMockup: React.FC<BrowserMockupProps> = ({ projects }) => {
           <div className="preview-grid">
             {activeProject.preview.sampleItems.map((item, idx) => (
               <div key={idx} className="preview-mini-card">
-                <div>
+                <div className="mini-card-head">
                   <span className="mini-card-tag">{item.tag}</span>
                   <h4 className="mini-card-title">{item.title}</h4>
                 </div>
@@ -122,12 +124,12 @@ export const BrowserMockup: React.FC<BrowserMockupProps> = ({ projects }) => {
 
         <div className="viewport-footer">
           <div className="viewport-meta">
-            <span>{activeProject.preview.highlightMetricLabel}: </span>
-            <strong>{activeProject.preview.highlightMetricValue}</strong>
+            <span className="viewport-meta-label">{activeProject.preview.highlightMetricLabel}: </span>
+            <strong className="viewport-meta-val">{activeProject.preview.highlightMetricValue}</strong>
           </div>
           <div className="viewport-meta">
-            <span>Peran: </span>
-            <strong>{activeProject.role}</strong>
+            <span className="viewport-meta-label">Peran: </span>
+            <strong className="viewport-meta-val">{activeProject.role}</strong>
           </div>
         </div>
       </div>

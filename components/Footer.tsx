@@ -8,11 +8,11 @@ export const Footer: React.FC = () => {
           <div className="footer-brand">
             <span className="footer-name">Tonang Arivin</span>
             <p className="footer-location">
-              AI-Assisted Full-Stack Developer • Jember, Jawa Timur, Indonesia (GMT+7)
+              AI-Assisted Full-Stack Developer / Jember, Jawa Timur, Indonesia (WIB / GMT+7)
             </p>
           </div>
 
-          <div className="footer-links" aria-label="Tautan Kontak Footer">
+          <nav className="footer-links" aria-label="Tautan Kontak Footer">
             <a
               href="mailto:tonangarivin.n8n@gmail.com"
               className="footer-link"
@@ -38,12 +38,19 @@ export const Footer: React.FC = () => {
             >
               GitHub
             </a>
-          </div>
+            <a
+              href="/auth"
+              className="footer-link"
+              aria-label="Buka halaman autentikasi akun"
+            >
+              Autentikasi Akun
+            </a>
+          </nav>
         </div>
 
         <div className="footer-bottom">
           <span>Hak cipta © Tonang Arivin. Semua hak dilindungi.</span>
-          <span>Dibuat dengan Next.js dan TypeScript.</span>
+          <span>Desain editorial personal. Dibangun dengan Next.js dan TypeScript.</span>
         </div>
       </div>
     </footer>
