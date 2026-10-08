@@ -1,0 +1,55 @@
+[
+  {
+    "id": "vunk-movie",
+    "title": "VUNK Movie Portal",
+    "description": "Curated movie discovery & media streaming portal engineered for ultra-fast load times and seamless navigation.",
+    "url": "https://movie.vunk.my.id",
+    "shortUrl": "https://t.co/4CZ00JKwl1",
+    "tag": "Streaming & Discovery",
+    "category": "Web Platform",
+    "status": "Live",
+    "metrics": "Sub-50ms Edge Response",
+    "badgeColor": "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
+    "featured": true,
+    "createdAt": "2026-10-01T00:00:00.000Z"
+  },
+  {
+    "id": "vunk-shop",
+    "title": "VUNK E-Commerce Platform",
+    "description": "High-performance digital commerce experience with dynamic catalog rendering, zero-friction checkout, and edge caching.",
+    "url": "https://shop.vunk.my.id",
+    "tag": "Digital Commerce",
+    "category": "Full-Stack",
+    "status": "Live",
+    "metrics": "Edge Caching Enabled",
+    "badgeColor": "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
+    "featured": true,
+    "createdAt": "2026-10-02T00:00:00.000Z"
+  },
+  {
+    "id": "social-auto-pilot",
+    "title": "Autonomous Social Engine",
+    "description": "Multi-channel automated publishing pipeline connecting AI content generators to Buffer (TikTok, IG, Threads) and Telegram bots.",
+    "url": "https://t.me/dgoldenbullet",
+    "tag": "Autonomous Agent",
+    "category": "AI & Automation",
+    "status": "Active 24/7",
+    "metrics": "24+ Yields/Day Autopilot",
+    "badgeColor": "text-amber-gold bg-amber-glow/10 border-amber-glow/30",
+    "featured": true,
+    "createdAt": "2026-10-03T00:00:00.000Z"
+  },
+  {
+    "id": "bang-motion",
+    "title": "Bang Motion AI Video",
+    "description": "Cloud-accelerated motion graphics & Remotion video pipeline producing programmatic vertical reels and cinematic audio muxing.",
+    "url": "#",
+    "tag": "Generative Video",
+    "category": "Creative AI",
+    "status": "GPU Accelerated",
+    "metrics": "Colab T4 Distributed Render",
+    "badgeColor": "text-amber-gold bg-amber-glow/10 border-amber-glow/30",
+    "featured": true,
+    "createdAt": "2026-10-04T00:00:00.000Z"
+  }
+]

@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #08090b;
+  --foreground: #f3f4f6;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Subtle amber border glow on hover */
+.glow-card {
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #2D2F3D;
+}
+.glow-card:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 20px -4px rgba(245, 158, 11, 0.15);
+}

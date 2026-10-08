@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard - TONANG.AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "on-tertiary-fixed": "#002113",
+              "surface-tint": "#ffb95f",
+              "outline-variant": "#534434",
+              "primary": "#ffc174",
+              "surface-container": "#1f2022",
+              "secondary-fixed": "#ffdead",
+              "on-surface": "#e3e2e5",
+              "on-secondary-fixed-variant": "#604100",
+              "on-background": "#e3e2e5",
+              "primary-fixed-dim": "#ffb95f",
+              "on-error-container": "#ffdad6",
+              "tertiary": "#56e5a9",
+              "surface-variant": "#343537",
+              "outline": "#a08e7a",
+              "on-secondary-fixed": "#281900",
+              "secondary": "#fabc4d",
+              "surface-dim": "#121315",
+              "secondary-container": "#bd8718",
+              "on-primary-fixed": "#2a1700",
+              "surface-container-low": "#1b1c1e",
+              "primary-container": "#f59e0b",
+              "inverse-primary": "#855300",
+              "background": "#121315",
+              "on-tertiary-container": "#004e34",
+              "primary-fixed": "#ffddb8",
+              "on-primary-container": "#613b00",
+              "on-error": "#690005",
+              "surface": "#121315",
+              "on-primary": "#472a00",
+              "tertiary-fixed-dim": "#4edea3",
+              "on-secondary": "#432c00",
+              "secondary-fixed-dim": "#fabc4d",
+              "on-tertiary": "#003824",
+              "tertiary-container": "#30c88f",
+              "surface-container-high": "#292a2c",
+              "on-tertiary-fixed-variant": "#005236",
+              "surface-container-lowest": "#0d0e10",
+              "surface-container-highest": "#343537",
+              "on-secondary-container": "#3a2600",
+              "surface-bright": "#38393b",
+              "inverse-on-surface": "#303033",
+              "error-container": "#93000a",
+              "tertiary-fixed": "#6ffbbe",
+              "inverse-surface": "#e3e2e5",
+              "on-primary-fixed-variant": "#653e00",
+              "error": "#ffb4ab",
+              "on-surface-variant": "#d8c3ad"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.125rem",
+              "lg": "0.25rem",
+              "xl": "0.5rem",
+              "full": "0.75rem"
+            },
+            "spacing": {
+              "space-xs": "0.25rem",
+              "margin-mobile": "1.25rem",
+              "space-lg": "1.5rem",
+              "gutter-mobile": "1rem",
+              "space-sm": "0.5rem",
+              "space-xl": "2.5rem",
+              "space-md": "1rem",
+              "margin": "3rem",
+              "gutter": "1.5rem"
+            },
+            "fontFamily": {
+              "headline-md": ["Geist"],
+              "headline-lg-mobile": ["Geist"],
+              "body-md": ["Inter"],
+              "headline-xl-mobile": ["Geist"],
+              "label-code": ["JetBrains Mono"],
+              "body-sm": ["Inter"],
+              "body-lg": ["Inter"],
+              "label-telemetry": ["JetBrains Mono"],
+              "label-badge": ["JetBrains Mono"],
+              "headline-sm": ["Geist"],
+              "headline-lg": ["Geist"],
+              "headline-xl": ["Geist"]
+            },
+            "fontSize": {
+              "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+              "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+              "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+              "headline-xl-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+              "label-code": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+              "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+              "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+              "label-telemetry": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+              "label-badge": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+              "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+              "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+              "headline-xl": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.04em", "fontWeight": "700" }]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/30 dark:border-outline-variant/30 docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-space-lg md:px-margin max-w-7xl mx-auto h-16">
+<div class="flex items-center gap-space-md">
+<span class="font-headline-md text-headline-md tracking-tighter text-on-surface dark:text-on-surface font-bold">TONANG.AI</span>
+<span class="hidden md:inline-block px-2 py-0.5 rounded bg-surface-container border border-outline-variant/30 font-label-telemetry text-label-telemetry text-primary">ADMIN CONSOLE</span>
+</div>
+<nav class="hidden md:flex items-center gap-space-lg">
+<a class="text-primary dark:text-primary border-b-2 border-primary font-medium pb-1 font-label-code text-label-code" href="#">Overview</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-code text-label-code transition-colors hover:text-primary" href="#">Projects</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-code text-label-code transition-colors hover:text-primary" href="#">Stack</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-code text-label-code transition-colors hover:text-primary" href="#">Services</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-code text-label-code transition-colors hover:text-primary" href="#">Contact</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-code text-label-code transition-colors hover:text-primary" href="#">Admin</a>
+</nav>
+<div class="flex items-center gap-space-sm">
+<button class="hidden sm:flex items-center gap-space-xs px-3 py-1.5 rounded bg-surface-container border border-outline-variant/30 font-label-code text-label-code text-on-surface hover:border-primary transition-all">
+<span class="material-symbols-outlined text-sm">terminal</span>
+<span>CLI</span>
+</button>
+<button class="flex items-center gap-space-xs px-3.5 py-1.5 rounded bg-primary-container text-on-primary-container font-headline-sm text-label-code font-bold hover:brightness-110 transition-all">
+<span>Get in Touch</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Admin Dashboard Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-space-lg md:px-margin py-space-xl">
+<!-- Top bar: Breadcrumb & System Status -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-xl">
+<div class="flex items-center gap-space-sm font-label-code text-label-code text-on-surface-variant">
+<span class="text-primary font-semibold">Admin</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Dashboard</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface">Overview</span>
+</div>
+<div class="flex items-center gap-space-md flex-wrap">
+<!-- Live system status beacon -->
+<div class="flex items-center gap-space-sm bg-surface-container border border-outline-variant/30 px-3.5 py-1.5 rounded-lg">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+</span>
+<span class="font-label-telemetry text-label-telemetry text-on-surface">System Healthy / 99.98% uptime</span>
+</div>
+<!-- Quick Logout Button -->
+<button class="flex items-center gap-space-xs px-3.5 py-1.5 rounded-lg bg-surface-container border border-outline-variant/30 text-on-surface hover:border-error hover:text-error transition-all font-label-code text-label-code">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span>Logout</span>
+</button>
+</div>
+</div>
+<!-- KPI Stats Cards (4 grid columns) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1 -->
+<div class="bg-[#181920] border border-[#2D2F3D] p-space-lg rounded-lg hover:border-primary-container/40 transition-all relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-container/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-space-sm">
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant">TOTAL PROJECTS</span>
+<span class="material-symbols-outlined text-primary text-lg">folder_managed</span>
+</div>
+<div class="flex items-baseline gap-space-sm mb-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">8 Active</span>
+</div>
+<div class="font-label-code text-label-code text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span>+2 this month</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#181920] border border-[#2D2F3D] p-space-lg rounded-lg hover:border-primary-container/40 transition-all relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-container/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-space-sm">
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant">TOTAL VIEWS</span>
+<span class="material-symbols-outlined text-primary text-lg">visibility</span>
+</div>
+<div class="flex items-baseline gap-space-sm mb-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">14.2k</span>
+</div>
+<div class="font-label-code text-label-code text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span>+18.4% vs last week</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#181920] border border-[#2D2F3D] p-space-lg rounded-lg hover:border-primary-container/40 transition-all relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-container/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-space-sm">
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant">AUTOMATIONS RUNNING</span>
+<span class="material-symbols-outlined text-primary text-lg">smart_toy</span>
+</div>
+<div class="flex items-baseline gap-space-sm mb-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">6 Cron/Bots</span>
+</div>
+<div class="font-label-code text-label-code text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+<span>status: all operational</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-[#181920] border border-[#2D2F3D] p-space-lg rounded-lg hover:border-primary-container/40 transition-all relative overflow-hidden group">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-container/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-space-sm">
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant">API LATENCY</span>
+<span class="material-symbols-outlined text-primary text-lg">bolt</span>
+</div>
+<div class="flex items-baseline gap-space-sm mb-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">24ms</span>
+</div>
+<div class="font-label-code text-label-code text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">radar</span>
+<span>status: optimal edge response</span>
+</div>
+</div>
+</div>
+<!-- Main Content & Side Panel Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-xl">
+<!-- Main Content: 'Projects & Showcase Manager' data table (2 cols) -->
+<div class="lg:col-span-2 bg-[#181920] border border-[#2D2F3D] rounded-lg p-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-space-sm pb-space-md border-b border-outline-variant/20">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Projects &amp; Showcase Manager</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage active portfolio entities, deployment pipelines, and visibility.</p>
+</div>
+<!-- Prominent Add New Project Button -->
+<button class="flex items-center gap-space-xs px-4 py-2 rounded bg-primary-container text-on-primary-container font-headline-sm text-label-code font-bold hover:brightness-110 shadow-[0_0_20px_rgba(245,158,11,0.25)] transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>+ Add New Project</span>
+</button>
+</div>
+<!-- Table Wrapper -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/30 font-label-telemetry text-label-telemetry text-on-surface-variant">
+<th class="py-3 px-2">Project Name &amp; Thumbnail</th>
+<th class="py-3 px-2">Domain/URL</th>
+<th class="py-3 px-2">Category</th>
+<th class="py-3 px-2">Status</th>
+<th class="py-3 px-2 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/15 font-body-sm text-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-3 px-2">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded bg-surface-container border border-outline-variant/30 bg-cover bg-center shrink-0" data-alt="A sleek abstract digital thumbnail representing a neural network visualization with amber nodes and dark obsidian background tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA9nI6rRfejPDlyOXZxE_mWpuvKWV-zLF2RKG7nY8xNfxlf1grB1PKha8P58E3vInU2cUwP_CbCk-qgogu2oaR9lZiZlAIU9M-e5b7Pazwzlc3Bftc32rV9QN03LvTqVvB0snqZWiVDn-39bkv8IvDH5XrE5p27Y-jO2lbFiV5sZs9jSq-SO0SS8c64JHwU-375AGUy245kJK9lyp1RoJcn8wVGbk1x0l2_8Jh8oYK-0EyIzupCIWlH_ifspnTDFSfjJp2tG2za9ptJ')"></div>
+<div>
+<div class="font-medium text-on-surface">Tonang.ai Engine</div>
+<div class="font-label-code text-label-code text-on-surface-variant text-xs">v4.2 core</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-2 font-label-code text-label-code text-primary">tonang.ai</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded bg-[#22232D] border border-[#2D2F3D] font-label-badge text-label-badge text-on-surface-variant">AI</span>
+</td>
+<td class="py-3 px-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-label-badge text-label-badge border border-emerald-500/20">Active</span>
+</td>
+<td class="py-3 px-2 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Reorder">
+<span class="material-symbols-outlined text-base">swap_vert</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-error transition-colors" title="Delete">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-3 px-2">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded bg-surface-container border border-outline-variant/30 bg-cover bg-center shrink-0" data-alt="A modern developer dashboard interface screenshot rendered in minimal dark slate with amber instrumentation charts." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD23GsitKfzeK7bvlbsGkRlLgmsYDq7thdInAWansBF28bQh8nDI-LRrc55_xcnzDl33N5BhiW_KWPBQCmYNjf_zdJP6zMgJteZiQvg1eOJVLGT-4jZ0yjbVGJ-rS4f61qVnANzw9UXrYVTiKzegXH6nFAaf-f617x-57L24WVgnla08Hx9mU3_13EAFbLNVFMC4vQ4CMSaAE0dO6FMA64XDduKP2AZ0cGw4C9Yoiz-bLbI6WVN04TAj8yi3-6bL7L706XotL2-0jjg')"></div>
+<div>
+<div class="font-medium text-on-surface">Edge Telemetry UI</div>
+<div class="font-label-code text-label-code text-on-surface-variant text-xs">v1.8 module</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-2 font-label-code text-label-code text-primary">telemetry.tonang.ai</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded bg-[#22232D] border border-[#2D2F3D] font-label-badge text-label-badge text-on-surface-variant">Web</span>
+</td>
+<td class="py-3 px-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-label-badge text-label-badge border border-emerald-500/20">Active</span>
+</td>
+<td class="py-3 px-2 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Reorder">
+<span class="material-symbols-outlined text-base">swap_vert</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-error transition-colors" title="Delete">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-3 px-2">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded bg-surface-container border border-outline-variant/30 bg-cover bg-center shrink-0" data-alt="An automated telegram bot communication vector graphic with sleek circuit connections and amber lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcYdb8_HtjbPvsZ5R3nQcQBar7pf0S4BLmdvtdhUseIumFyfSVG0v6wf1qbqiZiw5zpoVks3Ksf48ZCaChhvL2MVY0nUwFMqlFw94CCdmYtPddCV1bvQPLjEW9KeDIw6dejGr0i5KrXOdB42E-wgLzzoUuo0NPzWEDwye8wAQ0-qj15_wWBFBv14fbojUJnjhkJtJeiaid8roob3nJVOFiCCYBnqx5cidvZk17espW02LVar4GrV-wXPfAvr89Wnm-hRzzGVUprFZf')"></div>
+<div>
+<div class="font-medium text-on-surface">Telegram Sync Bot</div>
+<div class="font-label-code text-label-code text-on-surface-variant text-xs">v2.0 cron</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-2 font-label-code text-label-code text-primary">bot.tonang.ai</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded bg-[#22232D] border border-[#2D2F3D] font-label-badge text-label-badge text-on-surface-variant">Bot</span>
+</td>
+<td class="py-3 px-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 font-label-badge text-label-badge border border-amber-500/20">Draft</span>
+</td>
+<td class="py-3 px-2 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Reorder">
+<span class="material-symbols-outlined text-base">swap_vert</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-error transition-colors" title="Delete">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Side / Bottom Panel / Section: Quick Toggle Settings & Sync Status -->
+<div class="bg-[#181920] border border-[#2D2F3D] rounded-lg p-space-lg flex flex-col gap-space-lg">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">System Controls</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Global toggles and background sync monitors.</p>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Toggle 1: Portfolio Visibility -->
+<div class="flex items-center justify-between p-3 rounded bg-surface-container border border-outline-variant/20">
+<div>
+<div class="font-medium text-on-surface text-sm">Portfolio Visibility</div>
+<div class="font-label-code text-label-code text-on-surface-variant text-xs">Public production feed</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Toggle 2: Maintenance Mode -->
+<div class="flex items-center justify-between p-3 rounded bg-surface-container border border-outline-variant/20">
+<div>
+<div class="font-medium text-on-surface text-sm">Maintenance Mode</div>
+<div class="font-label-code text-label-code text-on-surface-variant text-xs">Displays status banner</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Status Indicator: Buffer/Telegram Bot Sync -->
+<div class="p-3 rounded bg-surface-container border border-outline-variant/20 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-medium text-on-surface text-sm">Buffer &amp; Telegram Bot</span>
+<span class="flex items-center gap-1 font-label-badge text-label-badge text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                Connected
+                            </span>
+</div>
+<div class="font-label-code text-label-code text-on-surface-variant text-xs flex items-center justify-between">
+<span>Status: Polling active</span>
+<span class="text-primary">Sync: OK</span>
+</div>
+</div>
+</div>
+<!-- Quick Terminal CLI Input -->
+<div class="mt-auto pt-space-md border-t border-outline-variant/20">
+<div class="font-label-telemetry text-label-telemetry text-on-surface-variant mb-2">QUICK EXEC COMMAND</div>
+<div class="flex items-center bg-[#0D0E12] border border-[#2D2F3D] rounded px-3 py-2">
+<span class="text-primary font-label-code text-label-code mr-2">&gt;</span>
+<input class="bg-transparent border-none text-on-surface font-label-code text-label-code w-full focus:ring-0 p-0 placeholder:text-on-surface-variant" placeholder="deploy --edge --prod" type="text"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/30 dark:border-outline-variant/30 w-full mt-space-xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-space-lg md:px-margin py-space-lg max-w-7xl mx-auto gap-space-md">
+<div class="font-headline-sm text-headline-sm text-on-surface dark:text-on-surface">TONANG.AI</div>
+<div class="font-label-telemetry text-label-telemetry text-on-surface-variant">
+                © 2025 Arifin Tonang. System operational across distributed edge nodes.
+            </div>
+<div class="flex items-center gap-space-lg font-label-telemetry text-label-telemetry text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">GitHub</a>
+<a class="hover:text-primary transition-colors" href="#">X / Twitter</a>
+<a class="hover:text-primary transition-colors" href="#">Telegram</a>
+<a class="hover:text-primary transition-colors" href="#">PGP Key</a>
+<a class="hover:text-primary transition-colors" href="#">Telemetry API</a>
+</div>
+</div>
+</footer>
+</body></html>
