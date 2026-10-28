@@ -1,417 +1,467 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import {
-  ExternalLink,
-  Terminal,
-  Cpu,
-  Layers,
-  ArrowRight,
-  Menu,
-  X,
-  Lock,
-  Sparkles,
-  Zap,
-  Globe,
-  Radio
-} from "lucide-react";
-import type { Project } from "@/lib/projects";
+import Clock from "@/components/clock";
+import { getProjects } from "@/lib/projects";
 
-const techStack = [
-  { category: "Core Runtimes", items: ["TypeScript", "Next.js 15 (App Router)", "Node.js", "Python 3.12+"] },
-  { category: "Edge & Infra", items: ["Cloudflare Tunnels", "Cloudflare Workers", "Nginx Multi-Tenant", "Oracle Linux VPS"] },
-  { category: "AI & Orchestration", items: ["9Router Gateway", "Gemini 3.8 Flash", "Claude 3.7/Sonnet", "OpenCode CLI", "Hermes Agent"] },
-  { category: "Data & Automation", items: ["PostgreSQL", "Atomic JSON Engines", "Buffer GraphQL", "Telegram Bot API"] },
+export const revalidate = 0;
+
+const stack = [
+  {
+    title: "Runtimes",
+    body: "TypeScript, Next.js 15 App Router, Node 22, Python 3.12. Nothing exotic, everything current.",
+    icon: "code",
+  },
+  {
+    title: "Infrastructure",
+    body: "Cloudflare Zero Trust tunnels, Workers, multi-tenant Nginx, Oracle Linux VPS with a 4 TB block volume.",
+    icon: "server",
+  },
+  {
+    title: "Intelligence",
+    body: "Hermes agent runtime, 9Router gateway, Claude · Gemini · DeepSeek behind one OpenAI-shaped endpoint.",
+    icon: "spark",
+  },
+  {
+    title: "Delivery",
+    body: "Atomic JSON stores, PostgreSQL, Buffer GraphQL, Telegram Bot API. Shipped, not demoed.",
+    icon: "send",
+  },
 ];
 
-export default function HomePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+const practice = [
+  {
+    title: "Autonomous systems",
+    body: "Agents that sweep logs, retry their own failures and file the report before I wake up. Cron watchers, delegation trees, self-healing deploys.",
+  },
+  {
+    title: "Edge web platforms",
+    body: "Multi-tenant routing, isolated subdomains, static hydration under 50ms. The infrastructure stays boring so the product does not.",
+  },
+  {
+    title: "Generative media",
+    body: "Programmatic video, voice synthesis and render farms on borrowed GPUs. From prompt to published reel without a human in the middle.",
+  },
+];
 
-  useEffect(() => {
-    let isMounted = true;
-    async function fetchProjects() {
-      try {
-        const res = await fetch("/api/projects");
-        if (res.ok) {
-          const data = await res.json();
-          if (isMounted && Array.isArray(data)) {
-            setProjects(data);
-          }
-        }
-      } catch (err) {
-        console.error("Failed to load projects:", err);
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    }
-    fetchProjects();
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+function Check() {
+  return (
+    <svg viewBox="0 0 20 20" className="mt-0.5 h-4 w-4 shrink-0 fill-none stroke-here-yellow" strokeWidth="2.2" aria-hidden>
+      <path d="M4 10.5l4 4 8-9" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+const icons: Record<string, string> = {
+  code: "M8 5L3 10l5 5M16 5l5 5-5 5",
+  server: "M3 5h18v5H3zM3 14h18v5H3zM7 7.5h.01M7 16.5h.01",
+  spark: "M12 3v4M12 17v4M3 12h4M17 12h4M6.4 6.4l2.8 2.8M14.8 14.8l2.8 2.8M17.6 6.4l-2.8 2.8M9.2 14.8l-2.8 2.8",
+  send: "M3 11l18-8-8 18-2-8-8-2z",
+};
+
+function Bars({ className = "" }: { className?: string }) {
+  const h = [28, 54, 38, 72, 48, 86, 60, 96, 72, 58, 88, 44];
+  return (
+    <div className={`flex items-end gap-[3px] ${className}`}>
+      {h.map((v, i) => (
+        <span key={i} className="flex-1 rounded-[2px] bg-here-bg/20" style={{ height: `${v}%` }} />
+      ))}
+    </div>
+  );
+}
+
+function Phone({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div
+      className={`flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-here-cream text-here-bg shadow-[0_28px_60px_-24px_rgba(0,0,0,0.75)] ${className}`}
+    >
+      <div className="flex shrink-0 items-center justify-between px-4 pb-1 pt-2.5 text-[9px] font-bold text-here-bg/45">
+        <span className="tnum">9:41</span>
+        <span className="tracking-[0.15em]">▪▪▪</span>
+      </div>
+      <div className="min-h-0 flex-1 overflow-hidden">{children}</div>
+      <div className="mx-auto mb-2 mt-1.5 h-1 w-12 shrink-0 rounded-full bg-here-bg/20" />
+    </div>
+  );
+}
+
+export default async function HomePage() {
+  const projects = await getProjects();
+  const live = projects.filter((p) => p.url && p.url !== "#").length;
 
   return (
-    <div className="min-h-screen bg-canvas text-gray-200">
-      {/* Sticky Navigation */}
-      <header className="sticky top-0 z-50 border-b border-surface-border bg-canvas/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded bg-amber-glow/20 border border-amber-glow/40 text-amber-glow font-mono font-bold text-sm">
-              T
-            </span>
-            <span className="font-mono font-bold tracking-wider text-white">
-              TONANG<span className="text-amber-glow">.AI</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-mono font-medium text-emerald-400">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-              ONLINE
-            </span>
+    <div className="min-h-screen bg-here-bg">
+      {/* utility strip */}
+      <div className="bg-here-deep">
+        <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-5 py-2.5 text-[12px] text-here-dim md:px-8">
+          <p className="uppercase tracking-[0.14em]">Darklabs Studio · Independent</p>
+          <div className="flex items-center gap-5">
+            <a href="mailto:tonangarivin@gmail.com" className="text-here-muted underline underline-offset-4 hover:text-here-cream">
+              Available for work
+            </a>
+            <span className="hidden sm:inline">Surabaya, Indonesia</span>
+          </div>
+        </div>
+      </div>
+
+      {/* header */}
+      <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-here-bg/85 backdrop-blur-md">
+        <div className="mx-auto flex max-w-page items-center justify-between gap-6 px-5 py-3 md:px-8">
+          <Link href="/" className="flex items-center gap-2">
+            <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden>
+              <path d="M12 1l4 7h-8l4-7zM12 23l-4-7h8l-4 7zM1 12l7-4v8l-7-4zM23 12l-7 4V8l7 4z" fill="#f7b302" />
+              <circle cx="12" cy="12" r="2.2" fill="#fce823" />
+            </svg>
+            <span className="text-[20px] font-extrabold tracking-tight">Darklabs.</span>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden items-center gap-6 text-sm font-medium text-gray-400 md:flex">
-            <a href="#projects" className="transition hover:text-white">Projects</a>
-            <a href="#stack" className="transition hover:text-white">Tech Stack</a>
-            <a href="#services" className="transition hover:text-white">Capabilities</a>
-            <a href="#contact" className="transition hover:text-white">Contact</a>
-            <Link
-              href="/admin"
-              className="flex items-center gap-1.5 rounded border border-surface-border bg-surface-card px-3 py-1.5 text-xs font-mono text-gray-300 transition hover:border-amber-glow hover:text-amber-glow"
-            >
-              <Lock className="h-3 w-3" />
-              Admin Portal
-            </Link>
+          <nav className="hidden items-center gap-9 text-[15px] font-bold md:flex">
+            <a href="#work" className="text-here-yellow">
+              Work
+              <span className="mt-1 block h-[2px] w-full rounded-full bg-here-yellow" />
+            </a>
+            <a href="#stack" className="text-here-cream/85 hover:text-here-cream">Stack</a>
+            <a href="#practice" className="text-here-cream/85 hover:text-here-cream">Practice</a>
+            <a href="#contact" className="text-here-cream/85 hover:text-here-cream">Contact</a>
           </nav>
 
-          {/* Mobile Hamburger Toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-9 w-9 items-center justify-center rounded border border-surface-border bg-surface-card text-gray-300 md:hidden"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-
-        {/* Mobile Dropdown Drawer */}
-        {mobileMenuOpen && (
-          <div className="border-b border-surface-border bg-surface-card px-4 py-4 md:hidden">
-            <div className="flex flex-col gap-3 font-medium">
-              <a
-                href="#projects"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 text-gray-300 hover:text-amber-glow"
-              >
-                Projects Showcase
-              </a>
-              <a
-                href="#stack"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 text-gray-300 hover:text-amber-glow"
-              >
-                Technical Stack
-              </a>
-              <a
-                href="#services"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 text-gray-300 hover:text-amber-glow"
-              >
-                Capabilities
-              </a>
-              <a
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 text-gray-300 hover:text-amber-glow"
-              >
-                Contact
-              </a>
-              <Link
-                href="/admin"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 rounded border border-amber-glow/40 bg-amber-glow/10 py-2.5 text-xs font-mono font-semibold text-amber-glow"
-              >
-                <Lock className="h-3.5 w-3.5" />
-                Go to Admin Dashboard
-              </Link>
-            </div>
+          <div className="flex items-center gap-3">
+            <Clock />
+            <a
+              href="mailto:tonangarivin@gmail.com"
+              className="rounded-[16px] bg-here-cream px-4 py-2 text-[13px] font-bold text-here-bg transition hover:bg-white md:px-5 md:text-[15px]"
+            >
+              Start a project
+            </a>
           </div>
-        )}
+        </div>
       </header>
 
-      <main className="mx-auto max-w-6xl px-4 sm:px-6">
-        {/* HERO SECTION */}
-        <section className="py-12 sm:py-20 md:py-24">
-          <div className="inline-flex items-center gap-2 rounded-full border border-amber-glow/30 bg-amber-glow/10 px-3.5 py-1 text-xs font-mono font-medium text-amber-glow">
-            <Radio className="h-3 w-3 animate-pulse text-amber-glow" />
-            <span>SYSTEM OPERATIONAL • 24/7 AUTONOMOUS AGENTS</span>
-          </div>
+      {/* hero */}
+      <section className="relative overflow-hidden">
+        <div className="grid-bg pointer-events-none absolute inset-x-0 top-0 h-[900px]" aria-hidden />
 
-          <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Architecting{" "}
-            <span className="bg-gradient-to-r from-amber-gold via-amber-glow to-amber-200 bg-clip-text text-transparent">
-              Autonomous AI
-            </span>{" "}
-            & High-Yield Digital Engines.
-          </h1>
-
-          <p className="mt-5 max-w-2xl text-base text-gray-400 sm:text-lg">
-            Creative AI Engineer & Automation Architect. Bridging generative intelligence, multi-agent workflows, and scalable edge web platforms with resilient production infrastructure.
-          </p>
-
-          {/* Action CTAs */}
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a
-              href="#projects"
-              className="flex items-center gap-2 rounded bg-amber-glow px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400"
-            >
-              Explore Projects
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <Link
-              href="/admin"
-              className="flex items-center gap-2 rounded border border-surface-border bg-surface-card px-5 py-2.5 text-sm font-semibold text-gray-300 transition hover:border-amber-glow hover:text-white"
-            >
-              <Lock className="h-4 w-4 text-amber-glow" />
-              Admin Portal
-            </Link>
-          </div>
-
-          {/* Live Telemetry Status Strip */}
-          <div className="mt-10 grid grid-cols-2 gap-3 border-y border-surface-border py-4 sm:grid-cols-4">
-            <div>
-              <div className="text-[11px] font-mono text-gray-500 uppercase tracking-wider">System Latency</div>
-              <div className="mt-1 font-mono text-sm font-semibold text-emerald-400">24ms (Edge)</div>
+        <div className="relative mx-auto max-w-page px-5 pt-12 md:px-8 md:pt-16">
+          <div className="grid items-center gap-8 lg:grid-cols-[180px_1fr_180px]">
+            <div className="hidden lg:block">
+              <p className="text-[13px] text-here-muted">Running since</p>
+              <p className="mt-1 flex items-center gap-2 text-[19px] font-bold">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-here-yellow opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-here-yellow" />
+                </span>
+                2021
+              </p>
             </div>
-            <div>
-              <div className="text-[11px] font-mono text-gray-500 uppercase tracking-wider">Platform Uptime</div>
-              <div className="mt-1 font-mono text-sm font-semibold text-white">99.98%</div>
-            </div>
-            <div>
-              <div className="text-[11px] font-mono text-gray-500 uppercase tracking-wider">Active Pipelines</div>
-              <div className="mt-1 font-mono text-sm font-semibold text-amber-gold">6 Continuous</div>
-            </div>
-            <div>
-              <div className="text-[11px] font-mono text-gray-500 uppercase tracking-wider">Target Domain</div>
-              <div className="mt-1 font-mono text-sm font-semibold text-gray-300">vunk.my.id</div>
-            </div>
-          </div>
-        </section>
 
-        {/* PROJECTS SHOWCASE */}
-        <section id="projects" className="py-12 sm:py-16">
-          <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-amber-glow">
-                <Sparkles className="h-3.5 w-3.5" />
-                Production Systems
-              </div>
-              <h2 className="mt-1 text-2xl font-bold text-white sm:text-3xl">
-                Featured Deployments
-              </h2>
-            </div>
-            <p className="text-xs text-gray-400 sm:text-right">
-              Live applications & autonomous pipelines running in production
-            </p>
-          </div>
+            <div className="text-center">
+              <h1 className="text-[clamp(2.3rem,7.4vw,5.2rem)] font-extrabold uppercase leading-[0.94] tracking-[-0.03em]">
+                <span className="grad block">AI Systems</span>
+                <span className="block text-here-cream">Built To Ship</span>
+              </h1>
+              <p className="mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-here-muted md:text-[19px]">
+                Studio of Arifin Tonang. Autonomous agents, edge web platforms and
+                generative media pipelines — built, deployed and kept alive in production.
+              </p>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {loading ? (
-              <>
-                <div className="rounded-lg border border-surface-border bg-surface-card p-5 sm:p-6 animate-pulse">
-                  <div className="flex items-center justify-between">
-                    <div className="h-4 w-20 rounded bg-surface-elevated" />
-                    <div className="h-4 w-16 rounded bg-surface-elevated" />
-                  </div>
-                  <div className="mt-4 h-6 w-3/4 rounded bg-surface-elevated" />
-                  <div className="mt-2 h-10 w-full rounded bg-surface-elevated" />
-                  <div className="mt-6 flex justify-between border-t border-surface-border pt-4">
-                    <div className="h-4 w-24 rounded bg-surface-elevated" />
-                    <div className="h-4 w-20 rounded bg-surface-elevated" />
-                  </div>
-                </div>
-                <div className="rounded-lg border border-surface-border bg-surface-card p-5 sm:p-6 animate-pulse">
-                  <div className="flex items-center justify-between">
-                    <div className="h-4 w-20 rounded bg-surface-elevated" />
-                    <div className="h-4 w-16 rounded bg-surface-elevated" />
-                  </div>
-                  <div className="mt-4 h-6 w-3/4 rounded bg-surface-elevated" />
-                  <div className="mt-2 h-10 w-full rounded bg-surface-elevated" />
-                  <div className="mt-6 flex justify-between border-t border-surface-border pt-4">
-                    <div className="h-4 w-24 rounded bg-surface-elevated" />
-                    <div className="h-4 w-20 rounded bg-surface-elevated" />
-                  </div>
-                </div>
-              </>
-            ) : projects.length === 0 ? (
-              <div className="col-span-full rounded-lg border border-surface-border bg-surface-card p-8 text-center text-xs font-mono text-gray-500">
-                No active projects deployed yet.
-              </div>
-            ) : (
-              projects.map((proj) => (
-                <div
-                  key={proj.id}
-                  className="glow-card flex flex-col justify-between rounded-lg bg-surface-card p-5 sm:p-6"
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href="#work"
+                  className="rounded-[16px] bg-here-cream px-6 py-3 text-[15px] font-bold text-here-bg transition hover:bg-white"
                 >
-                  <div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="rounded bg-surface-elevated px-2 py-0.5 text-[10px] font-mono uppercase text-gray-400">
-                        {proj.category}
-                      </span>
-                      <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-mono font-medium ${proj.badgeColor || "text-emerald-400 bg-emerald-500/10 border-emerald-500/30"}`}>
-                        <span className="h-1.5 w-1.5 rounded-full bg-current" />
-                        {proj.status}
-                      </span>
-                    </div>
+                  See the work
+                </a>
+                <a
+                  href="https://x.com/0xAI_D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-[16px] border border-white/15 px-6 py-3 text-[15px] font-bold text-here-cream transition hover:border-white/35 hover:bg-white/5"
+                >
+                  @0xAI_D
+                </a>
+              </div>
+            </div>
 
-                    <h3 className="mt-4 text-lg font-bold text-white">
-                      {proj.title}
-                    </h3>
-                    <p className="mt-2 text-xs leading-relaxed text-gray-400 sm:text-sm">
-                      {proj.description}
-                    </p>
-                  </div>
+            <div className="hidden text-right lg:block">
+              <p className="text-[13px] text-here-muted">In production</p>
+              <p className="mt-1 text-[19px] font-bold tnum">
+                {String(live).padStart(2, "0")} systems
+              </p>
+            </div>
+          </div>
 
-                  <div className="mt-6 flex items-center justify-between border-t border-surface-border pt-4">
-                    <span className="font-mono text-xs text-gray-500">
-                      {proj.metrics}
-                    </span>
-                    {proj.url && proj.url !== "#" ? (
-                      <a
-                        href={proj.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-amber-gold transition hover:text-amber-300"
+          {/* phone trio */}
+          <div className="mt-12 flex items-end justify-center md:mt-16">
+            <div className="hidden shrink-0 translate-y-5 md:block">
+              <Phone className="float-side -mr-10 aspect-[9/16] w-[220px]">
+                <div className="flex h-full flex-col px-4 pb-4">
+                  <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.16em] text-here-bg/45">
+                    Stack
+                  </p>
+                  <div className="mt-2 space-y-1.5">
+                    {["Next.js 15", "TypeScript", "Cloudflare", "Postgres", "Hermes"].map((s) => (
+                      <div
+                        key={s}
+                        className="flex items-center justify-between rounded-lg border border-here-bg/10 px-2.5 py-1.5"
                       >
-                        Visit Platform
-                        <ExternalLink className="h-3.5 w-3.5" />
-                      </a>
-                    ) : (
-                      <span className="text-xs font-mono text-gray-500">Internal Engine</span>
-                    )}
+                        <span className="text-[10px] font-bold">{s}</span>
+                        <span className="h-1.5 w-1.5 rounded-full bg-here-yellow" />
+                      </div>
+                    ))}
+                  </div>
+                  <p className="mt-3 rounded-lg bg-here-yellow/15 px-2.5 py-2 text-[9px] font-bold leading-snug text-here-bg/70">
+                    Zero-downtime deploys, every push.
+                  </p>
+                  <Bars className="mt-auto h-14" />
+                </div>
+              </Phone>
+            </div>
+
+            <Phone className="float z-20 aspect-[9/16] w-[290px]">
+              <div className="flex h-full flex-col px-4 pb-4">
+                <div className="flex items-center justify-between text-[10px] font-bold text-here-bg/40">
+                  <span>QR</span>
+                  <span>Bell</span>
+                  <span>Team</span>
+                  <span>⚙</span>
+                </div>
+                <div className="mt-3 flex gap-1 rounded-full bg-here-bg/[0.06] p-1 text-[9px] font-bold text-here-bg/50">
+                  <span className="rounded-full px-2 py-1">Overview</span>
+                  <span className="rounded-full bg-white px-2 py-1 text-here-bg shadow-sm">Projects</span>
+                  <span className="rounded-full px-2 py-1">Stack</span>
+                </div>
+
+                <div className="mt-3 rounded-2xl border border-here-bg/10 p-3">
+                  <p className="text-[9px] uppercase tracking-[0.14em] text-here-bg/45">All systems</p>
+                  <p className="tnum text-[24px] font-extrabold leading-tight">
+                    {String(projects.length).padStart(2, "0")}{" "}
+                    <span className="text-[11px] font-bold text-here-bg/45">tracked</span>
+                  </p>
+                  <div className="mt-2 flex gap-2">
+                    <span className="rounded-lg bg-[#fce823] px-3 py-1.5 text-[10px] font-extrabold text-here-bg">
+                      Live
+                    </span>
+                    <span className="rounded-lg bg-[#fdbf1c] px-3 py-1.5 text-[10px] font-extrabold text-here-bg">
+                      Mail
+                    </span>
                   </div>
                 </div>
-              ))
-            )}
-          </div>
-        </section>
 
-        {/* TECHNICAL STACK MATRIX */}
-        <section id="stack" className="py-12 sm:py-16">
-          <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-amber-glow">
-            <Cpu className="h-3.5 w-3.5" />
-            Infrastructure & Tooling
+                <p className="mt-3 text-[9px] uppercase tracking-[0.14em] text-here-bg/45">Projects</p>
+                <div className="mt-1.5 space-y-1">
+                  {projects.slice(0, 4).map((p) => (
+                    <div key={p.id} className="flex items-center justify-between gap-2 py-1">
+                      <span className="truncate text-[10px] font-bold">{p.title}</span>
+                      <span className="shrink-0 text-[9px] font-semibold text-here-bg/45">{p.status}</span>
+                    </div>
+                  ))}
+                </div>
+                <Bars className="mt-auto h-16" />
+              </div>
+            </Phone>
+
+            <div className="hidden shrink-0 translate-y-5 md:block">
+              <Phone className="float-side -ml-10 aspect-[9/16] w-[220px]">
+                <div className="flex h-full flex-col px-4 pb-4">
+                  <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.16em] text-here-bg/45">
+                    This week
+                  </p>
+                  <p className="mt-2 rounded-lg bg-[#fce823] px-2.5 py-1.5 text-[9px] font-extrabold leading-snug">
+                    Renders go out every night, unattended.
+                  </p>
+                  <div className="mt-3 space-y-2">
+                    {[
+                      ["Reels", "18"],
+                      ["Renders", "212"],
+                      ["Commits", "64"],
+                      ["Uptime", "99.9%"],
+                    ].map(([k, v]) => (
+                      <div key={k} className="flex items-center justify-between">
+                        <span className="text-[10px] font-semibold text-here-bg/60">{k}</span>
+                        <span className="tnum text-[11px] font-extrabold">{v}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-auto h-1.5 overflow-hidden rounded-full bg-here-bg/10">
+                    <div className="h-full w-4/5 rounded-full bg-gradient-to-r from-[#fdbf1c] to-[#c74ad5]" />
+                  </div>
+                </div>
+              </Phone>
+            </div>
           </div>
-          <h2 className="mt-1 text-2xl font-bold text-white sm:text-3xl">
-            Engineering Matrix
+        </div>
+      </section>
+
+      {/* work */}
+      <section id="work" className="mx-auto max-w-page px-5 pt-20 md:px-8 md:pt-28">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <h2 className="text-[clamp(2rem,4.6vw,3.1rem)] font-extrabold leading-[1.02] tracking-tight">
+            Selected work.
           </h2>
+          <p className="text-[15px] text-here-muted">Live, in production, nobody watching.</p>
+        </div>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {techStack.map((group) => (
-              <div key={group.category} className="rounded-lg border border-surface-border bg-surface-card p-5">
-                <h3 className="font-mono text-xs font-semibold text-amber-gold uppercase tracking-wider">
-                  {group.category}
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {projects.map((p, i) => {
+            const external = Boolean(p.url && p.url !== "#");
+            const inner = (
+              <>
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-here-yellow">
+                    {String(i + 1).padStart(2, "0")} · {p.category}
+                  </span>
+                  <span className="rounded-full border border-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-here-muted">
+                    {p.status}
+                  </span>
+                </div>
+
+                <h3 className="mt-5 text-[26px] font-extrabold leading-none tracking-tight md:text-[30px]">
+                  {p.title}
                 </h3>
-                <ul className="mt-3 space-y-2">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-xs text-gray-300">
-                      <span className="h-1 w-1 rounded-full bg-amber-glow/60" />
-                      {item}
+                <p className="mt-3 text-[14px] leading-relaxed text-here-muted">{p.description}</p>
+
+                <ul className="mt-4 space-y-2">
+                  {[p.tag, p.metrics].map((line) => (
+                    <li key={line} className="flex gap-2.5 text-[13px] text-here-cream/80">
+                      <Check />
+                      <span>{line}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
-          </div>
-        </section>
 
-        {/* CAPABILITIES / SERVICES */}
-        <section id="services" className="py-12 sm:py-16">
-          <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-amber-glow">
-            <Zap className="h-3.5 w-3.5" />
-            Core Capabilities
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[13px] font-bold text-here-yellow">
+                  {external ? "Try it out" : "In the lab"}
+                  <span aria-hidden>{external ? "↗" : "·"}</span>
+                </span>
+              </>
+            );
+
+            const cls =
+              "group flex flex-col rounded-[22px] border border-here-line bg-here-card/50 p-6 transition hover:border-white/25 hover:bg-here-card md:p-7";
+
+            return external ? (
+              <a key={p.id} href={p.url} target="_blank" rel="noopener noreferrer" className={cls}>
+                {inner}
+              </a>
+            ) : (
+              <div key={p.id} className={cls}>
+                {inner}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* stack */}
+      <section id="stack" className="mx-auto max-w-page px-5 pt-20 md:px-8 md:pt-28">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-[clamp(2rem,4.6vw,3.1rem)] font-extrabold leading-[1.02] tracking-tight">
+              Runs on what?
+            </h2>
+            <p className="mt-2 text-[15px] text-here-muted">Everything below is already in production somewhere.</p>
           </div>
-          <h2 className="mt-1 text-2xl font-bold text-white sm:text-3xl">
-            Autonomous Workflows & Architecture
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {stack.map((s) => (
+            <div key={s.title} className="rounded-[22px] border border-here-line bg-here-card/50 p-6">
+              <svg viewBox="0 0 24 24" className="h-6 w-6 fill-none stroke-here-yellow" strokeWidth="1.8" aria-hidden>
+                <path d={icons[s.icon]} strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <h3 className="mt-4 text-[19px] font-extrabold tracking-tight">{s.title}</h3>
+              <p className="mt-2 text-[14px] leading-relaxed text-here-muted">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* practice */}
+      <section id="practice" className="mx-auto max-w-page px-5 pt-20 md:px-8 md:pt-28">
+        <h2 className="text-[clamp(2rem,4.6vw,3.1rem)] font-extrabold leading-[1.02] tracking-tight">
+          Three things, repeatedly.
+        </h2>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {practice.map((s, i) => (
+            <div
+              key={s.title}
+              className="flex flex-col rounded-[22px] border border-here-line bg-gradient-to-b from-white/[0.04] to-transparent p-6"
+            >
+              <span className="tnum text-[12px] font-bold text-here-yellow">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-4 text-[21px] font-extrabold leading-tight tracking-tight">{s.title}</h3>
+              <p className="mt-2.5 text-[14px] leading-relaxed text-here-muted">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* contact */}
+      <section id="contact" className="mx-auto max-w-page px-5 pt-20 md:px-8 md:pt-28">
+        <div className="rounded-[28px] border border-here-line bg-here-deep px-6 py-12 text-center md:px-12 md:py-16">
+          <h2 className="text-[clamp(2.1rem,5.6vw,3.8rem)] font-extrabold leading-[1] tracking-tight">
+            <span className="grad block">Let&apos;s build.</span>
+            <span className="block text-here-cream">Tell me what you ship.</span>
           </h2>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-lg border border-surface-border bg-surface-card p-5">
-              <div className="flex h-9 w-9 items-center justify-center rounded bg-amber-glow/10 text-amber-glow">
-                <Terminal className="h-4 w-4" />
-              </div>
-              <h3 className="mt-3 text-sm font-bold text-white">Autonomous Agent Systems</h3>
-              <p className="mt-2 text-xs text-gray-400 leading-relaxed">
-                Multi-agent delegation, self-healing cron watchers, and automated developer tooling executing without continuous human oversight.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-surface-border bg-surface-card p-5">
-              <div className="flex h-9 w-9 items-center justify-center rounded bg-amber-glow/10 text-amber-glow">
-                <Globe className="h-4 w-4" />
-              </div>
-              <h3 className="mt-3 text-sm font-bold text-white">Edge Web & Multi-Tenant Routing</h3>
-              <p className="mt-2 text-xs text-gray-400 leading-relaxed">
-                Cloudflare Zero Trust tunnels, isolated subdomains, high-throughput Nginx reverse proxies, and sub-50ms static hydration.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-surface-border bg-surface-card p-5">
-              <div className="flex h-9 w-9 items-center justify-center rounded bg-amber-glow/10 text-amber-glow">
-                <Layers className="h-4 w-4" />
-              </div>
-              <h3 className="mt-3 text-sm font-bold text-white">Generative Media Pipelines</h3>
-              <p className="mt-2 text-xs text-gray-400 leading-relaxed">
-                Headless programmatic video rendering, automated audio voice synthesis, and multi-channel social media syndication.
-              </p>
-            </div>
+          <p className="mx-auto mt-5 max-w-[520px] text-[16px] leading-relaxed text-here-muted">
+            Two build slots open. Agents, web platforms, media pipelines — one operator,
+            no handoff tax.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="mailto:tonangarivin@gmail.com"
+              className="rounded-[16px] bg-here-cream px-7 py-3 text-[15px] font-bold text-here-bg transition hover:bg-white"
+            >
+              tonangarivin@gmail.com
+            </a>
+            <a
+              href="https://github.com/tonangarivin-ui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-[16px] border border-white/15 px-7 py-3 text-[15px] font-bold text-here-cream transition hover:border-white/35 hover:bg-white/5"
+            >
+              GitHub
+            </a>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* FOOTER & CONTACT */}
-        <footer id="contact" className="border-t border-surface-border py-12 text-sm text-gray-400">
-          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+      {/* footer */}
+      <footer className="mt-20 border-t border-white/[0.06] bg-here-deep">
+        <div className="mx-auto max-w-page px-5 py-10 md:px-8">
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
             <div>
-              <div className="font-mono font-bold text-white">ARIFIN TONANG</div>
-              <p className="mt-1 text-xs text-gray-500">
-                Creative AI Engineer • Surabaya / Jakarta (WIB, UTC+7)
+              <div className="flex items-center gap-2">
+                <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
+                  <path d="M12 1l4 7h-8l4-7zM12 23l-4-7h8l-4 7zM1 12l7-4v8l-7-4zM23 12l-7 4V8l7 4z" fill="#f7b302" />
+                </svg>
+                <span className="text-[18px] font-extrabold tracking-tight">Darklabs.</span>
+              </div>
+              <p className="mt-3 max-w-[300px] text-[13px] leading-relaxed text-here-dim">
+                Studio of Arifin Tonang. Autonomous systems, edge web, generative media.
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
-              <a
-                href="https://github.com/tonangarivin-ui"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition hover:text-amber-glow"
-              >
-                GitHub @tonangarivin-ui
+            <div className="flex flex-wrap gap-x-10 gap-y-4 text-[13px] font-bold">
+              <a href="#work" className="text-here-muted hover:text-here-cream">Work</a>
+              <a href="#stack" className="text-here-muted hover:text-here-cream">Stack</a>
+              <a href="#practice" className="text-here-muted hover:text-here-cream">Practice</a>
+              <a href="#contact" className="text-here-muted hover:text-here-cream">Contact</a>
+              <a href="https://x.com/0xAI_D" target="_blank" rel="noopener noreferrer" className="text-here-muted hover:text-here-cream">
+                X / Twitter
               </a>
-              <a
-                href="https://x.com/0xAI_D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition hover:text-amber-glow"
-              >
-                X @0xAI_D
-              </a>
-              <Link
-                href="/admin"
-                className="text-gray-500 transition hover:text-amber-glow"
-              >
-                [Admin Login]
+              <Link href="/admin" className="text-here-dim hover:text-here-muted">
+                Admin
               </Link>
             </div>
           </div>
-          <div className="mt-8 text-center text-xs text-gray-600">
-            © {2026} Tonang.ai • Built with Next.js 15 & Cloudflare Edge.
+
+          <div className="mt-8 flex flex-col gap-2 border-t border-white/[0.06] pt-5 text-[12px] text-here-dim sm:flex-row sm:justify-between">
+            <p>© 2026 Darklabs — Arifin Tonang. All systems running.</p>
+            <p>Set in Cabinet Grotesk · darklabs.tech</p>
           </div>
-        </footer>
-      </main>
+        </div>
+      </footer>
     </div>
   );
 }

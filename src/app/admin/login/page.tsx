@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
             Admin Console Access
           </h1>
           <p className="mt-1 text-xs text-gray-400">
-            Tonang.ai Portfolio Management System
+            Darklabs — control room
           </p>
         </div>
 

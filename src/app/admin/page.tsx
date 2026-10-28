@@ -148,7 +148,7 @@ export default function AdminDashboardPage() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
           <div className="flex items-center gap-3">
             <Link href="/" className="font-mono text-sm font-bold text-white hover:text-amber-glow">
-              TONANG<span className="text-amber-glow">.AI</span>
+              DARK<span className="text-amber-glow">LABS</span>
             </Link>
             <span className="text-gray-600 font-mono">/</span>
             <span className="font-mono text-xs font-semibold text-gray-300">ADMIN CONSOLE</span>
@@ -357,7 +357,7 @@ export default function AdminDashboardPage() {
                     required
                     value={newTitle}
                     onChange={(e) => setNewTitle(e.target.value)}
-                    placeholder="e.g. VUNK AI Engine"
+                    placeholder="e.g. Darklabs Reel"
                     className="mt-1 block w-full rounded border border-surface-border bg-surface-elevated px-3 py-2 text-sm text-white placeholder-gray-500 focus:border-amber-glow focus:outline-none"
                   />
                 </div>

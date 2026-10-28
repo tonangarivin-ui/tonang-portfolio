@@ -1,21 +1,42 @@
 import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-mono",
+});
+
 export const metadata: Metadata = {
-  title: "Arifin Tonang — Creative AI Engineer & Automation Architect",
-  description: "Architecting Autonomous AI & High-Yield Digital Engines. Portfolio and digital systems by Arifin Tonang.",
+  metadataBase: new URL("https://darklabs.tech"),
+  title: "Darklabs — AI systems, web platforms, media pipelines",
+  description:
+    "Darklabs is the studio of Arifin Tonang: autonomous agent systems, edge web platforms and generative media pipelines, running in production.",
+  openGraph: {
+    title: "Darklabs",
+    description:
+      "Autonomous agent systems, edge web platforms and generative media pipelines — built and run by Arifin Tonang.",
+    url: "https://darklabs.tech",
+    siteName: "Darklabs",
+    type: "website",
+  },
+  alternates: { canonical: "https://darklabs.tech" },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-canvas text-gray-200 antialiased selection:bg-amber-glow selection:text-black">
-        {children}
-      </body>
+    <html lang="en" className={mono.variable}>
+      <head>
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f%5B%5D=cabinet-grotesk@800,900,700,500,400&display=swap"
+        />
+      </head>
+      <body className="min-h-screen bg-here-bg font-sans text-here-cream">{children}</body>
     </html>
   );
 }
