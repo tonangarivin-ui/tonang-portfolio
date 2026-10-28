@@ -9,19 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Obsidian Lumina — public site
+        // Editorial Light & Crimson (public site)
         lum: {
-          deep: "#0A0A0C",
-          base: "#121216",
-          elev: "#18181E",
-          high: "#1F1F23",
-          line: "#26262E",
-          focus: "#3A3A47",
-          ink: "#F4F4F6",
-          dim: "#9E9EB0",
-          mute: "#7C7C8C",
-          lime: "#CCFF00",
-          cyan: "#00F0FF",
+          deep: "#F9F9F8",
+          base: "#FFFFFF",
+          elev: "#F0F0EE",
+          high: "#E2E2E0",
+          line: "#E2E2E0",
+          focus: "#C9CDD4",
+          ink: "#111113",
+          dim: "#4B5563",
+          mute: "#6B7280",
+          lime: "#FF3333",
+          cyan: "#E61919",
           violet: "#8B5CF6",
         },
         // retained for the admin surface

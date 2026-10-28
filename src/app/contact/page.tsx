@@ -58,7 +58,7 @@ export default function ContactPage() {
             {scopes.map((s) => (
               <span
                 key={s}
-                className="label rounded-sharp border border-lum-line bg-white/[0.03] px-2.5 py-1.5 text-lum-dim"
+                className="label rounded-sharp border border-lum-line bg-lum-elev px-2.5 py-1.5 text-lum-dim"
               >
                 {s}
               </span>

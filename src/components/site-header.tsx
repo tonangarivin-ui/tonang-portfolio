@@ -30,7 +30,7 @@ export default function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <Clock />
-          <span className="hidden items-center gap-2 rounded-full border border-lum-line bg-white/[0.03] px-3 py-1.5 sm:inline-flex">
+          <span className="hidden items-center gap-2 rounded-full border border-lum-line bg-lum-elev px-3 py-1.5 sm:inline-flex">
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lum-lime opacity-70" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lum-lime" />

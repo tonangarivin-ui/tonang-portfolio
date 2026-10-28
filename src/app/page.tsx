@@ -61,7 +61,7 @@ function Monogram({ label }: { label: string }) {
     .slice(0, 3)
     .toUpperCase();
   return (
-    <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(204,255,0,0.10),transparent_55%),radial-gradient(circle_at_75%_80%,rgba(0,240,255,0.12),transparent_55%)]">
+    <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(255,51,51,0.08),transparent_55%),radial-gradient(circle_at_75%_80%,rgba(230,25,25,0.06),transparent_55%)]">
       <span className="font-display text-[clamp(2rem,6vw,4rem)] font-bold tracking-[-0.04em] text-lum-ink/15">
         {letters}
       </span>
@@ -71,7 +71,7 @@ function Monogram({ label }: { label: string }) {
 
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="label rounded-sharp border border-lum-line bg-white/[0.03] px-2 py-1 text-lum-dim">
+    <span className="label rounded-sharp border border-lum-line bg-lum-elev px-2 py-1 text-lum-dim">
       {children}
     </span>
   );
@@ -88,7 +88,7 @@ function FeaturedCard({ p }: { p: Project }) {
           alt={`${p.title} interface`}
           className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
-        <span className="label absolute left-3 top-3 rounded-sharp bg-lum-deep/80 px-2 py-1 text-lum-lime backdrop-blur-sm">
+        <span className="label absolute left-3 top-3 rounded-sharp bg-lum-base/95 px-2 py-1 text-lum-lime shadow-sm">
           {p.category}
         </span>
       </div>
@@ -297,7 +297,7 @@ export default async function WorksPage() {
               key={p.id}
               className={`grid grid-cols-2 items-center gap-3 px-4 py-3.5 md:grid-cols-[2fr_1fr_1.4fr_auto] ${
                 i > 0 ? "border-t border-lum-line" : ""
-              } ${i % 2 ? "bg-lum-base/40" : "bg-lum-base"}`}
+              } ${i % 2 ? "bg-lum-deep" : "bg-lum-base"}`}
             >
               <span className="font-display text-[15px] font-medium">{p.title}</span>
               <span className="label text-lum-dim">{p.status}</span>

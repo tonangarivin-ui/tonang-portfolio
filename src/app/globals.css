@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --deep: #0a0a0c;
-  --base: #121216;
-  --elev: #18181e;
-  --line: #26262e;
-  --ink: #f4f4f6;
-  --dim: #9e9eb0;
-  --mute: #7c7c8c;
-  --lime: #ccff00;
-  --cyan: #00f0ff;
+  --deep: #f9f9f8;
+  --base: #ffffff;
+  --elev: #f0f0ee;
+  --line: #e2e2e0;
+  --ink: #111113;
+  --dim: #4b5563;
+  --mute: #6b7280;
+  --lime: #ff3333;
+  --cyan: #e61919;
 }
 
 * {
@@ -55,7 +55,7 @@ body {
 
 /* frosted header */
 .glass {
-  background: rgba(18, 18, 22, 0.72);
+  background: rgba(249, 249, 248, 0.82);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
 }
@@ -64,14 +64,14 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* lime bloom on interaction, replacing opaque drop shadows */
+/* crimson bloom on interaction */
 .bloom {
   transition: transform 160ms ease, box-shadow 200ms ease, border-color 200ms ease,
     background-color 200ms ease, color 200ms ease;
 }
 .bloom:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(204, 255, 0, 0.35);
+  box-shadow: 0 6px 20px -6px rgba(255, 51, 51, 0.4);
 }
 
 /* cyan underline reveal for ghost links */
