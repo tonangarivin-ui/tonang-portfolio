@@ -9,21 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // public site palette (herewallet.app)
-        here: {
-          bg: "#2c3034",
-          deep: "#232629",
-          card: "#35393b",
-          line: "#3d4247",
-          cream: "#f3ebea",
-          blush: "#ebdedc",
-          muted: "#a9a3a0",
-          dim: "#6b6661",
-          yellow: "#f7b302",
-          bright: "#fce823",
-          orange: "#fca857",
-          pink: "#fc668b",
-          violet: "#c74ad5",
+        // Obsidian Lumina — public site
+        lum: {
+          deep: "#0A0A0C",
+          base: "#121216",
+          elev: "#18181E",
+          high: "#1F1F23",
+          line: "#26262E",
+          focus: "#3A3A47",
+          ink: "#F4F4F6",
+          dim: "#9E9EB0",
+          mute: "#7C7C8C",
+          lime: "#CCFF00",
+          cyan: "#00F0FF",
+          violet: "#8B5CF6",
         },
         // retained for the admin surface
         canvas: "#08090B",
@@ -39,11 +38,16 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Cabinet Grotesk", "Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        display: ["var(--font-grotesk)", "Space Grotesk", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "JetBrains Mono", "ui-monospace", "monospace"],
       },
       maxWidth: {
-        page: "1140px",
+        page: "1440px",
+      },
+      borderRadius: {
+        sharp: "4px",
+        card: "8px",
       },
     },
   },

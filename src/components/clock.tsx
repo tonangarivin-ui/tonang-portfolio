@@ -19,7 +19,7 @@ export default function Clock() {
   }, []);
 
   return (
-    <span className="tnum hidden text-[12px] font-bold uppercase tracking-[0.12em] text-here-muted sm:inline">
+    <span className="label tnum hidden text-lum-mute sm:inline">
       {time ? `${time} WIB` : "\u00a0"}
     </span>
   );

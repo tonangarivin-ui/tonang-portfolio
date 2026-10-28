@@ -3,14 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --bg: #2c3034;
-  --deep: #232629;
-  --card: #35393b;
-  --line: #3d4247;
-  --cream: #f3ebea;
-  --blush: #ebdedc;
-  --muted: #a9a3a0;
-  --yellow: #f7b302;
+  --deep: #0a0a0c;
+  --base: #121216;
+  --elev: #18181e;
+  --line: #26262e;
+  --ink: #f4f4f6;
+  --dim: #9e9eb0;
+  --mute: #7c7c8c;
+  --lime: #ccff00;
+  --cyan: #00f0ff;
 }
 
 * {
@@ -23,76 +24,91 @@ html {
 }
 
 body {
-  background: var(--bg);
-  color: var(--cream);
+  background: var(--deep);
+  color: var(--ink);
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--yellow);
-  color: #232629;
+  background: var(--lime);
+  color: var(--deep);
 }
 
-/* the wireframe room behind the hero */
-.grid-bg {
-  background-image: url("/brand/grid-perspective.svg");
-  background-repeat: no-repeat;
-  background-position: 50% 0;
-  background-size: min(1440px, 170%) auto;
-  opacity: 0.55;
-  -webkit-mask-image: linear-gradient(#000 42%, transparent 88%);
-  mask-image: linear-gradient(#000 42%, transparent 88%);
+/* mono metadata — the system's technical voice */
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* yellow -> orange -> pink -> violet, clipped to the type */
-.grad {
-  background-image: linear-gradient(
-    90.02deg,
-    #fdbe1d 18.72%,
-    #fca857 41.42%,
-    #fc668b 61.68%,
-    #c74ad5 79.52%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.label-lg {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* frosted header */
+.glass {
+  background: rgba(18, 18, 22, 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
 }
 
 .tnum {
   font-variant-numeric: tabular-nums;
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--yellow);
-  outline-offset: 3px;
-  border-radius: 4px;
+/* lime bloom on interaction, replacing opaque drop shadows */
+.bloom {
+  transition: transform 160ms ease, box-shadow 200ms ease, border-color 200ms ease,
+    background-color 200ms ease, color 200ms ease;
+}
+.bloom:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(204, 255, 0, 0.35);
 }
 
-/* the mockups breathe — keeps the hero from reading like a static slide */
-@keyframes floaty {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+/* cyan underline reveal for ghost links */
+.ghost-link {
+  position: relative;
 }
-.float {
-  animation: floaty 6s ease-in-out infinite;
+.ghost-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 0;
+  background: var(--cyan);
+  transition: width 200ms ease;
 }
-.float-side {
-  animation: floaty 7s ease-in-out infinite;
-  animation-delay: -2.5s;
+.ghost-link:hover::after {
+  width: 100%;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .float,
-  .float-side {
-    animation: none !important;
+  .bloom,
+  .bloom:hover,
+  .ghost-link::after {
+    transition: none;
+    transform: none;
   }
 }

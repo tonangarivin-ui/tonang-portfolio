@@ -1,7 +1,7 @@
 [
   {
     "id": "darklabs-reel",
-    "title": "Darklabs Reel",
+    "title": "DramaFlow",
     "description": "Movie discovery portal. Curated shelves, no autoplay noise, first paint under a second on 3G.",
     "url": "https://movie.vunk.my.id",
     "shortUrl": "https://t.co/4CZ00JKwl1",
@@ -20,7 +20,7 @@
     "url": "https://shop.vunk.my.id",
     "tag": "Digital Commerce",
     "category": "Full-stack",
-    "status": "Live",
+    "status": "Standby",
     "metrics": "Edge caching · IDR",
     "badgeColor": "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
     "featured": true,
