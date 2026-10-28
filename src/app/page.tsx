@@ -94,7 +94,7 @@ export default async function HomePage() {
         <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-5 py-2.5 text-[12px] text-here-dim md:px-8">
           <p className="uppercase tracking-[0.14em]">Darklabs Studio · Independent</p>
           <div className="flex items-center gap-5">
-            <a href="mailto:tonangarivin@gmail.com" className="text-here-muted underline underline-offset-4 hover:text-here-cream">
+            <a href="mailto:tonangarivin@darklabs.tech" className="text-here-muted underline underline-offset-4 hover:text-here-cream">
               Available for work
             </a>
             <span className="hidden sm:inline">Surabaya, Indonesia</span>
@@ -126,7 +126,7 @@ export default async function HomePage() {
           <div className="flex items-center gap-3">
             <Clock />
             <a
-              href="mailto:tonangarivin@gmail.com"
+              href="mailto:tonangarivin@darklabs.tech"
               className="rounded-[16px] bg-here-cream px-4 py-2 text-[13px] font-bold text-here-bg transition hover:bg-white md:px-5 md:text-[15px]"
             >
               Start a project
@@ -409,10 +409,10 @@ export default async function HomePage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="mailto:tonangarivin@gmail.com"
+              href="mailto:tonangarivin@darklabs.tech"
               className="rounded-[16px] bg-here-cream px-7 py-3 text-[15px] font-bold text-here-bg transition hover:bg-white"
             >
-              tonangarivin@gmail.com
+              tonangarivin@darklabs.tech
             </a>
             <a
               href="https://github.com/tonangarivin-ui"
