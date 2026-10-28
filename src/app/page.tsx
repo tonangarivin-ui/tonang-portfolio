@@ -92,9 +92,9 @@ export default async function HomePage() {
       {/* utility strip */}
       <div className="bg-here-deep">
         <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-5 py-2.5 text-[12px] text-here-dim md:px-8">
-          <p className="uppercase tracking-[0.14em]">Basalt · Independent studio</p>
+          <p className="uppercase tracking-[0.14em]">Darklabs Studio · Independent</p>
           <div className="flex items-center gap-5">
-            <a href="mailto:tonangarivin@basalt.works" className="text-here-muted underline underline-offset-4 hover:text-here-cream">
+            <a href="mailto:tonangarivin@darklabs.tech" className="text-here-muted underline underline-offset-4 hover:text-here-cream">
               Available for work
             </a>
             <span className="hidden sm:inline">Surabaya, Indonesia</span>
@@ -105,12 +105,12 @@ export default async function HomePage() {
       {/* header */}
       <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-here-bg/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-page items-center justify-between gap-6 px-5 py-3 md:px-8">
-          <Link href="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2">
             <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden>
-              <path d="M12 1.6l9.2 5.3v10.2L12 22.4l-9.2-5.3V6.9L12 1.6z" fill="none" stroke="#f7b302" strokeWidth="1.8" strokeLinejoin="round" />
-              <path d="M12 7.6l4 2.3v4.2l-4 2.3-4-2.3V9.9l4-2.3z" fill="#fce823" />
+              <path d="M12 1l4 7h-8l4-7zM12 23l-4-7h8l-4 7zM1 12l7-4v8l-7-4zM23 12l-7 4V8l7 4z" fill="#f7b302" />
+              <circle cx="12" cy="12" r="2.2" fill="#fce823" />
             </svg>
-            <span className="text-[20px] font-extrabold tracking-tight">Basalt.</span>
+            <span className="text-[20px] font-extrabold tracking-tight">Darklabs.</span>
           </Link>
 
           <nav className="hidden items-center gap-9 text-[15px] font-bold md:flex">
@@ -126,7 +126,7 @@ export default async function HomePage() {
           <div className="flex items-center gap-3">
             <Clock />
             <a
-              href="mailto:tonangarivin@basalt.works"
+              href="mailto:tonangarivin@darklabs.tech"
               className="rounded-[16px] bg-here-cream px-4 py-2 text-[13px] font-bold text-here-bg transition hover:bg-white md:px-5 md:text-[15px]"
             >
               Start a project
@@ -409,10 +409,10 @@ export default async function HomePage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="mailto:tonangarivin@basalt.works"
+              href="mailto:tonangarivin@darklabs.tech"
               className="rounded-[16px] bg-here-cream px-7 py-3 text-[15px] font-bold text-here-bg transition hover:bg-white"
             >
-              tonangarivin@basalt.works
+              tonangarivin@darklabs.tech
             </a>
             <a
               href="https://github.com/tonangarivin-ui"
@@ -433,10 +433,9 @@ export default async function HomePage() {
             <div>
               <div className="flex items-center gap-2">
                 <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
-                  <path d="M12 1.6l9.2 5.3v10.2L12 22.4l-9.2-5.3V6.9L12 1.6z" fill="none" stroke="#f7b302" strokeWidth="1.8" strokeLinejoin="round" />
-                  <path d="M12 7.6l4 2.3v4.2l-4 2.3-4-2.3V9.9l4-2.3z" fill="#fce823" />
+                  <path d="M12 1l4 7h-8l4-7zM12 23l-4-7h8l-4 7zM1 12l7-4v8l-7-4zM23 12l-7 4V8l7 4z" fill="#f7b302" />
                 </svg>
-                <span className="text-[18px] font-extrabold tracking-tight">Basalt.</span>
+                <span className="text-[18px] font-extrabold tracking-tight">Darklabs.</span>
               </div>
               <p className="mt-3 max-w-[300px] text-[13px] leading-relaxed text-here-dim">
                 Studio of Arifin Tonang. Autonomous systems, edge web, generative media.
@@ -458,8 +457,8 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-8 flex flex-col gap-2 border-t border-white/[0.06] pt-5 text-[12px] text-here-dim sm:flex-row sm:justify-between">
-            <p>© 2026 Basalt — Arifin Tonang. All systems running.</p>
-            <p>Set in Cabinet Grotesk · basalt.works</p>
+            <p>© 2026 Darklabs — Arifin Tonang. All systems running.</p>
+            <p>Set in Cabinet Grotesk · darklabs.tech</p>
           </div>
         </div>
       </footer>

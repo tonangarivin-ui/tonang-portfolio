@@ -10,19 +10,19 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://basalt.works"),
-  title: "Basalt — AI systems, web platforms, media pipelines",
+  metadataBase: new URL("https://darklabs.tech"),
+  title: "Darklabs — AI systems, web platforms, media pipelines",
   description:
-    "Basalt is the studio of Arifin Tonang: autonomous agent systems, edge web platforms and generative media pipelines, running in production.",
+    "Darklabs is the studio of Arifin Tonang: autonomous agent systems, edge web platforms and generative media pipelines, running in production.",
   openGraph: {
-    title: "Basalt",
+    title: "Darklabs",
     description:
       "Autonomous agent systems, edge web platforms and generative media pipelines — built and run by Arifin Tonang.",
-    url: "https://basalt.works",
-    siteName: "Basalt",
+    url: "https://darklabs.tech",
+    siteName: "Darklabs",
     type: "website",
   },
-  alternates: { canonical: "https://basalt.works" },
+  alternates: { canonical: "https://darklabs.tech" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
