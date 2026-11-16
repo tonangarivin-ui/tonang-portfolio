@@ -9,9 +9,8 @@ export const metadata: Metadata = {
 const facts: [string, string][] = [
   ["Operator", "Arifin Tonang"],
   ["Based", "Surabaya, Indonesia (UTC+7)"],
-  ["Practice", "AI systems · edge web · media"],
-  ["Since", "2021"],
-  ["Currently", "Two build slots open"],
+  ["Working since", "2021"],
+  ["Practice", "Agent systems · edge web · media"],
 ];
 
 const principles = [
@@ -38,15 +37,17 @@ const instruments: [string, string[]][] = [
 
 export default function AboutPage() {
   return (
-    <div className="pt-14 md:pt-20">
-      <p className="label text-lum-lime">01 // Studio profile</p>
+    <div className="pt-12 md:pt-16">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-lum-line pb-4">
+        <span className="label text-lum-mute">About</span>
+        <span className="label text-lum-mute">Darklabs — Surabaya, Indonesia</span>
+      </div>
 
-      <h1 className="mt-4 max-w-[24ch] font-display text-[clamp(2.1rem,5.4vw,3.6rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
-        One operator. <span className="text-lum-lime">No handoff</span>{" "}
-        <span className="text-lum-cyan">tax.</span>
+      <h1 className="mt-12 max-w-[26ch] font-display text-[clamp(2.1rem,5.4vw,3.6rem)] font-medium leading-[1.05] tracking-[-0.035em]">
+        One operator. <span className="text-lum-lime">No handoff tax.</span>
       </h1>
 
-      <div className="mt-8 grid gap-10 lg:grid-cols-[1.3fr_1fr]">
+      <div className="mt-12 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
         <div className="space-y-5 text-[16px] leading-[1.7] text-lum-dim">
           <p>
             Darklabs is the studio of Arifin Tonang. I build the machinery that lets generative
@@ -65,27 +66,29 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <dl className="self-start rounded-card border border-lum-line bg-lum-base px-5 py-2">
+        <dl className="self-start border-t border-lum-line">
           {facts.map(([k, v]) => (
             <div
               key={k}
-              className="flex flex-col gap-0.5 border-b border-lum-line py-3 last:border-b-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
+              className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-lum-line py-3"
             >
-              <dt className="label shrink-0 text-lum-mute">{k}</dt>
-              <dd className="text-[14px] text-lum-ink sm:text-right">{v}</dd>
+              <dt className="label text-lum-mute">{k}</dt>
+              <dd className="text-[14px] text-lum-ink">{v}</dd>
             </div>
           ))}
         </dl>
       </div>
 
       <section className="pt-16 md:pt-24">
-        <p className="label text-lum-lime">02 // Principles</p>
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
+        <h2 className="font-display text-[clamp(1.4rem,2.6vw,1.9rem)] font-medium tracking-[-0.02em]">
+          How it gets built
+        </h2>
+        <div className="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-3">
           {principles.map((p) => (
-            <div key={p.title} className="rounded-card border border-lum-line bg-lum-base p-5">
-              <h2 className="font-display text-[18px] font-semibold leading-tight tracking-[-0.02em]">
+            <div key={p.title} className="border-t border-lum-line pt-5">
+              <h3 className="font-display text-[17px] font-medium leading-tight tracking-[-0.01em]">
                 {p.title}
-              </h2>
+              </h3>
               <p className="mt-2.5 text-[14px] leading-relaxed text-lum-dim">{p.body}</p>
             </div>
           ))}
@@ -93,19 +96,16 @@ export default function AboutPage() {
       </section>
 
       <section className="pt-16 md:pt-24">
-        <p className="label text-lum-lime">03 // Instruments</p>
-        <div className="mt-4 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className="font-display text-[clamp(1.4rem,2.6vw,1.9rem)] font-medium tracking-[-0.02em]">
+          What it runs on
+        </h2>
+        <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
           {instruments.map(([group, items]) => (
-            <div key={group} className="border-t border-lum-line pt-3">
-              <h3 className="label text-lum-cyan">{group}</h3>
-              <ul className="mt-3">
+            <div key={group} className="border-t border-lum-line pt-4">
+              <h3 className="label text-lum-mute">{group}</h3>
+              <ul className="mt-3 text-[14px] leading-[1.9] text-lum-dim">
                 {items.map((it) => (
-                  <li
-                    key={it}
-                    className="border-b border-lum-line py-2 text-[14px] text-lum-dim last:border-b-0"
-                  >
-                    {it}
-                  </li>
+                  <li key={it}>{it}</li>
                 ))}
               </ul>
             </div>
@@ -114,14 +114,14 @@ export default function AboutPage() {
       </section>
 
       <section className="pt-16 md:pt-24">
-        <div className="rounded-card border border-lum-line bg-lum-base p-6 md:p-10">
-          <h2 className="max-w-[26ch] font-display text-[clamp(1.6rem,3.6vw,2.4rem)] font-semibold leading-[1.05] tracking-[-0.03em]">
+        <div className="border-t border-lum-line pt-8 md:pt-12">
+          <h2 className="max-w-[26ch] text-balance font-display text-[clamp(1.6rem,3.6vw,2.4rem)] font-medium leading-[1.05] tracking-[-0.03em]">
             Want the long version, or a system built?
           </h2>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <a
               href="mailto:tonangarivin@darklabs.tech"
-              className="label-lg rounded-sharp bg-lum-lime px-5 py-3 font-bold text-lum-deep bloom"
+              className="label-lg bg-lum-ink px-5 py-3 text-lum-deep bloom hover:bg-lum-lime"
             >
               Email me
             </a>
@@ -129,7 +129,7 @@ export default function AboutPage() {
               href="https://github.com/tonangarivin-ui"
               target="_blank"
               rel="noopener noreferrer"
-              className="label-lg rounded-sharp border border-lum-line px-5 py-3 text-lum-ink bloom hover:border-lum-focus hover:bg-lum-elev"
+              className="label-lg border border-lum-line px-5 py-3 bloom hover:border-lum-ink"
             >
               GitHub ↗
             </a>

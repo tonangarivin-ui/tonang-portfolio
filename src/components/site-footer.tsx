@@ -14,7 +14,7 @@ const cols = [
     links: [
       { href: "https://x.com/0xAI_D", label: "X / Twitter", ext: true },
       { href: "https://github.com/tonangarivin-ui", label: "GitHub", ext: true },
-      { href: "https://movie.vunk.my.id", label: "DramaFlow", ext: true },
+      { href: "https://movie.darklabs.my.id", label: "DramaFlow", ext: true },
     ],
   },
 ];

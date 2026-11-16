@@ -11,17 +11,17 @@ const config: Config = {
       colors: {
         // Editorial Light & Crimson (public site)
         lum: {
-          deep: "#F9F9F8",
-          base: "#FFFFFF",
-          elev: "#F0F0EE",
-          high: "#E2E2E0",
-          line: "#E2E2E0",
-          focus: "#C9CDD4",
-          ink: "#111113",
-          dim: "#4B5563",
-          mute: "#6B7280",
-          lime: "#FF3333",
-          cyan: "#E61919",
+          deep: "#FAF8F4",
+          base: "#FFFDFA",
+          elev: "#F1ECE4",
+          high: "#E0DACF",
+          line: "#E0DACF",
+          focus: "#C9C2B5",
+          ink: "#16130F",
+          dim: "#4A4640",
+          mute: "#6E6961",
+          lime: "#B13124",
+          cyan: "#8C2317",
           violet: "#8B5CF6",
         },
         // retained for the admin surface

@@ -14,6 +14,7 @@ export interface Project {
   badgeColor?: string;
   featured?: boolean;
   createdAt?: string;
+  image?: string;
 }
 
 const DATA_FILE = path.join(process.cwd(), "data", "projects.json");
