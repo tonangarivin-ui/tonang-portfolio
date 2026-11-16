@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const EMAIL = "tonangarivin@darklabs.tech";
 
-const scopes = ["Agent pipeline", "Edge web platform", "Render farm", "Something else"];
+const scopes = ["Agent runtime", "Bounty pipeline", "Programmatic video", "Something else"];
 
 const links = [
   { label: "X / Twitter", value: "@0xAI_D", href: "https://x.com/0xAI_D" },

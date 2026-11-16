@@ -29,12 +29,12 @@
   {
     "id": "social-auto-pilot",
     "title": "Autopilot",
-    "description": "An n8n pipeline that takes an asset, writes the caption, waits for approval, then pushes to Buffer across five channels. Twelve nodes, real execution history, Telegram alerts when a post fails.",
+    "description": "An n8n pipeline that takes an asset, writes the caption, waits for approval, then calls a stubbed publisher. The pipeline runs; the publishing service is still a mock.",
     "url": "",
     "tag": "Autonomous agent",
     "category": "AI & automation",
     "status": "Running",
-    "metrics": "12 nodes · TikTok · IG · Threads",
+    "metrics": "n8n · approval step · stubbed publisher",
     "badgeColor": "text-amber-gold bg-amber-glow/10 border-amber-glow/30",
     "createdAt": "2026-10-03T00:00:00.000Z",
     "image": "/work/autopilot.jpg"
@@ -42,12 +42,12 @@
   {
     "id": "bang-motion",
     "title": "Bang Motion",
-    "description": "Programmatic vertical video: Remotion scene graphs rendered on borrowed Colab T4s, voice-over muxed in, shipped to short-form. The frame beside this is one of its own.",
+    "description": "Vertical video built from SVG/GSAP scenes, with frames rendered in headless Chrome and voice-over muxed with ffmpeg. All on the VPS.",
     "url": "",
     "tag": "Generative video",
     "category": "Creative AI",
     "status": "Active",
-    "metrics": "T4 farm · 1080p vertical",
+    "metrics": "VPS · headless Chrome · ffmpeg",
     "badgeColor": "text-amber-gold bg-amber-glow/10 border-amber-glow/30",
     "createdAt": "2026-10-04T00:00:00.000Z",
     "image": "/work/bang-motion.jpg"

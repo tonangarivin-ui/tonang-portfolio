@@ -27,7 +27,7 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://darklabs.tech"),
-  title: "Darklabs — Agent systems, edge platforms, render farms",
+  title: "Darklabs — Agent systems, edge platforms, programmatic video",
   description:
     "Darklabs is the studio of Arifin Tonang: autonomous agent systems, edge web platforms and generative media pipelines, deployed and kept alive in production.",
   openGraph: {

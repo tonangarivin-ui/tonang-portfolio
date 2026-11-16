@@ -24,15 +24,15 @@ const principles = [
   },
   {
     title: "Ship, then measure",
-    body: "A pipeline that renders 200 reels a week is a better argument than a deck about pipelines. Everything here runs in production or it gets deleted.",
+    body: "A working video pipeline is a better argument than a deck about pipelines. Ship it, then check the result.",
   },
 ];
 
 const instruments: [string, string[]][] = [
-  ["Runtimes", ["TypeScript", "Next.js 15 App Router", "Node 22", "Python 3.12"]],
-  ["Infrastructure", ["Cloudflare Zero Trust", "Workers + Tunnels", "Nginx multi-tenant", "Oracle Linux VPS"]],
-  ["Intelligence", ["Hermes agent runtime", "9Router gateway", "Claude · Gemini · DeepSeek", "OpenCode CLI"]],
-  ["Delivery", ["PostgreSQL", "Atomic JSON stores", "Buffer GraphQL", "Telegram Bot API"]],
+  ["Runtimes", ["Node 24", "TypeScript", "Next.js 15 App Router", "Python 3.12"]],
+  ["Infrastructure", ["Oracle Linux ARM VPS", "Cloudflare Tunnel", "Nginx multi-tenant", "systemd user timers"]],
+  ["Intelligence", ["OpenMausBot", "Hermes gateway", "9Router model gateway", "Claude Code · Codex · OpenCode"]],
+  ["Delivery", ["PostgreSQL", "Atomic JSON stores", "Telegram Bot API", "puppeteer + ffmpeg"]],
 ];
 
 export default function AboutPage() {
@@ -61,7 +61,7 @@ export default function AboutPage() {
             paid — autonomous agents, multi-tenant web platforms, video and voice pipelines.
           </p>
           <p>
-            Everything on this site runs in production. If a project page says it&apos;s live, you
+            Project status is listed with each entry. If a project page says it&apos;s live, you
             can open it. If it isn&apos;t, it says so.
           </p>
         </div>

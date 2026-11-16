@@ -30,7 +30,7 @@ export default function SiteFooter() {
               <span className="label text-lum-mute">/ studio</span>
             </div>
             <p className="mt-3 max-w-[34ch] text-[14px] leading-relaxed text-lum-dim">
-              One operator. Agent systems, edge platforms and render farms — deployed and kept alive.
+              One operator. Agent systems, edge platforms and programmatic video — deployed and kept alive.
             </p>
           </div>
 

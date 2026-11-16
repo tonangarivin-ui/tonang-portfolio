@@ -5,52 +5,52 @@ export const revalidate = 0;
 
 const services = [
   {
-    title: "Agent systems",
+    title: "Agent runtimes",
     items: [
-      "Hermes agent runtime",
-      "Delegation trees & cron watchers",
-      "Self-healing deploys",
-      "Telegram control surface",
+      "OpenMausBot threads & routines",
+      "Hermes gateway, Codex, Claude Code",
+      "9Router: one gateway, many models",
+      "Watchdog timers that restart what dies",
     ],
   },
   {
-    title: "Edge platforms",
+    title: "Bounty pipelines",
     items: [
-      "Next.js 15 App Router",
-      "Cloudflare tunnels & Workers",
-      "Multi-tenant Nginx",
-      "Sub-50ms static hydration",
+      "make.fun agent competitions, end to end",
+      "Repo + build transcript, submitted in one pass",
+      "On-chain USDC escrow, verified before entering",
+      "Daily sweeps that skip dead boards",
     ],
   },
   {
-    title: "Generative media",
+    title: "Programmatic video",
     items: [
-      "Remotion scene graphs",
-      "GPU render farm (T4)",
-      "Voice synthesis & muxing",
-      "Buffer GraphQL publishing",
+      "Bang Motion: SVG scenes, GSAP beats",
+      "Headless Chrome frames, ffmpeg mux",
+      "~350 frames per minute on 2 ARM cores",
+      "Styles packaged as reusable recipes",
     ],
   },
   {
-    title: "Delivery",
+    title: "VPS operations",
     items: [
+      "Oracle Linux, systemd user timers",
+      "Healthcheck that pages me on Telegram",
+      "Cloudflare Tunnel, multi-tenant Nginx",
       "PostgreSQL & atomic JSON stores",
-      "Type-safe APIs",
-      "Admin panels, not spreadsheets",
-      "Monitoring that pages me",
     ],
   },
 ];
 
 const stack = [
+  "Claude Code",
+  "Codex CLI",
+  "9Router",
   "Next.js 15",
-  "TypeScript",
-  "Cloudflare",
-  "PostgreSQL",
   "Oracle Linux",
-  "Colab T4",
-  "Telegram",
-  "Buffer",
+  "PostgreSQL",
+  "Cloudflare Tunnel",
+  "ffmpeg",
 ];
 
 const isLive = (s: string) => /^(live|running|active)$/i.test(s);
@@ -118,7 +118,7 @@ export default async function WorksPage() {
 
           <div>
             <p className="max-w-[42ch] text-[16px] leading-relaxed text-lum-dim">
-              Agent pipelines, edge platforms and render farms — built, deployed and supervised by
+              Agent pipelines, bounty pipelines and programmatic video — built, deployed and supervised by
               one person. {inProduction} of the {projects.length} below are in production right now.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -307,7 +307,7 @@ export default async function WorksPage() {
             Have a system that needs building?
           </h2>
           <p className="mt-4 max-w-[52ch] text-[16px] leading-relaxed text-lum-dim">
-            Agent pipelines, edge platforms, render farms. One operator, no handoff tax.
+            Agent pipelines, bounty pipelines, programmatic video. One operator, no handoff tax.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <a
